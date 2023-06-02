@@ -6,8 +6,6 @@
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <!-- Вот этот момент мне явно не понятен -->
-    <div>{{ $t('settings.tryLater') }}</div>
   </v-app>
 </template>
 

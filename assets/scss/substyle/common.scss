@@ -28,14 +28,12 @@ html {
 html body {
   position: relative;
   margin: 0 auto;
-  font-family: "Inter", sans-serif !important;
-  margin: 0 auto;
   max-width: #{$maxvw}px;
   min-width: #{$minvw}px;
-  background-color: #f4f4f7;
+  font-family: "Inter", sans-serif;
+  background-color: #fff;
 }
 
-html { overflow-y: auto !important}
 
 p,
 h1,
@@ -63,29 +61,4 @@ div .visually-hidden {
   padding: 0;
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
-}
-
-.svg-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mbot-15 {
-  margin-bottom: 15px;
-}
-
-.vertical-divider {
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 40px;
-  border-left: 1px solid #e3e3ea;
-}
-
-.line-height-min {
-  line-height: 52%;
-}
-
-html #teletype-iframes-container {
-  z-index: 201 !important;
 }

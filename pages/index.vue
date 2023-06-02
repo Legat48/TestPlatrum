@@ -1,6 +1,7 @@
 <template>
-  <div style="width: 100%;" class="content">
-    <!-- test -->
+  <div class="content">
+    <BaseTable />
+    <BaseForm />
   </div>
 </template>
 
@@ -14,5 +15,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.content {
+  display: flex;
+  padding: sizeIncr(24, 48);
+  justify-content: space-between;
+  width: 100%;
+}
 </style>

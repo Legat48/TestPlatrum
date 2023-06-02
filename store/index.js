@@ -1,24 +1,43 @@
+import findEmployeeById from '~/helpers/findEmployeeById'
+import generateId from '~/helpers/generateId'
+
 export const state = () => ({
-  dialogOpen: true,
-  dialogComponent: ''
+  employeesBase: []
 })
 
 export const getters = {
-  getDialogOpen (state) {
-    return state.dialogOpen
-  },
-  getDialogComponent (state) {
-    return state.dialogComponent
-  }
+  getEmployeesBase: state => state.employeesBase
 }
 
 export const mutations = {
-  toggleDialogOpen (state) {
-    state.dialogOpen ? state.dialogOpen = false : state.dialogOpen = true
+  setEmployees (state, { newEmployee, selectedEmployeeId }) {
+    const employeeToAdd = { ...newEmployee, id: generateId(state.employeesBase) }
+
+    if (selectedEmployeeId) {
+      const parentEmployee = findEmployeeById(state.employeesBase, selectedEmployeeId)
+      if (parentEmployee) {
+        parentEmployee.subordinate.push(employeeToAdd)
+      }
+    } else {
+      state.employeesBase.push(employeeToAdd)
+    }
+
+    localStorage.setItem('employeesBase', JSON.stringify(state.employeesBase))
   },
-  setDialogComponent (state, value) {
-    state.dialogComponent = value
+  removeEmployee (state, id) {
+    const removeEmployeeRecursive = (employees) => {
+      return employees.filter((employee) => {
+        if (employee.id === id) {
+          return false
+        }
+        if (employee.subordinate?.length) {
+          employee.subordinate = removeEmployeeRecursive(employee.subordinate)
+        }
+        return true
+      })
+    }
+
+    state.employeesBase = removeEmployeeRecursive(state.employeesBase)
+    localStorage.setItem('employeesBase', JSON.stringify(state.employeesBase))
   }
 }
-
-export const actions = {}
