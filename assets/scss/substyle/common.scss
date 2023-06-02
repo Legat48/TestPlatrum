@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
+}
+
+img,
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+svg,
+path {
+  @include transition;
+}
+
+html {
+  --vw: 100vw;
+  @media (min-width: #{$maxvw + 1}px) {
+    --vw : #{$maxvw}px;
+  }
+}
+
+html body {
+  position: relative;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif !important;
+  margin: 0 auto;
+  max-width: #{$maxvw}px;
+  min-width: #{$minvw}px;
+  background-color: #f4f4f7;
+}
+
+html { overflow-y: auto !important}
+
+p,
+h1,
+h2,
+h3,
+li,
+ul,
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+// паттерн для скрытия
+div .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+.svg-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mbot-15 {
+  margin-bottom: 15px;
+}
+
+.vertical-divider {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 40px;
+  border-left: 1px solid #e3e3ea;
+}
+
+.line-height-min {
+  line-height: 52%;
+}
+
+html #teletype-iframes-container {
+  z-index: 201 !important;
+}
