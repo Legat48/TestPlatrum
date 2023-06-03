@@ -4,9 +4,7 @@
       <h1 class="table__title">
         База данных по сотрудникам
       </h1>
-      <button class="table__btn btn">
-        Добавить
-      </button>
+      <BtnShowForm class="table__btn-show" />
     </div>
     <div v-if="employeesBase">
       <BaseEmployee v-for="employee in employeesBase" :key="employee.id" :employee="employee" />
@@ -36,5 +34,13 @@ export default {
 .table {
   display: flex;
   flex-direction: column;
+  &__wrap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: sizeIncr(10, 20);
+    border-bottom: 1px solid var(--color-border-1);
+  }
 }
 </style>

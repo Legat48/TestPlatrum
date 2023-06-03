@@ -2,15 +2,32 @@ import findEmployeeById from '~/helpers/findEmployeeById'
 import generateId from '~/helpers/generateId'
 
 export const state = () => ({
-  employeesBase: []
+  employeesBase: [],
+  formShow: false,
+  parentId: ''
 })
 
 export const getters = {
-  getEmployeesBase: state => state.employeesBase
+  getEmployeesBase: state => state.employeesBase,
+  getFormShow: state => state.formShow,
+  getParentId: state => state.parentId
 }
 
 export const mutations = {
+  setFormShow (state, value) {
+    if (!value) {
+      state.parentId = ''
+    }
+    state.formShow = value
+  },
+  setParentId (state, value) {
+    state.parentId = value
+  },
+  setEmployeesBase (state, value) {
+    state.employeesBase = value
+  },
   setEmployees (state, { newEmployee, selectedEmployeeId }) {
+    state.parentId = ''
     const employeeToAdd = { ...newEmployee, id: generateId(state.employeesBase) }
 
     if (selectedEmployeeId) {

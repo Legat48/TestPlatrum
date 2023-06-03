@@ -1,10 +1,14 @@
 <template>
   <div class="employee">
     <div class="employee__wrap">
-      <p class="employee__name">
-        {{ employee.name }} айди {{ employee.id }}
+      <BtnShowForm class="employee__btn-show" :icon="true" :parent-id="employee.id" />
+      <p class="employee__text">
+        {{ employee.name }}
       </p>
-      <p>
+      <p class="employee__text employee__text_sub">
+        Таб. №{{ employee.id }}
+      </p>
+      <p class="employee__text employee__text_sub">
         {{ employee.phone }}
       </p>
       <button class="employee__btn btn" @click.prevent="delEmployee(employee.id)">
@@ -13,7 +17,7 @@
         </svg>
       </button>
     </div>
-    <div v-if="employee.subordinate && employee.subordinate.length > 0">
+    <div v-if="employee.subordinate && employee.subordinate.length > 0" class="employee__subwrap">
       <BaseEmployee v-for="worker in employee.subordinate" :key="worker.id" :employee="worker" />
     </div>
   </div>
@@ -39,8 +43,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.table {
+.employee {
   display: flex;
   flex-direction: column;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-border-1);
+  }
+  &__wrap {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 44px 1fr 1fr 1fr 40px;
+  }
+  &__subwrap {
+    margin-left: 6px;
+    padding: 4px 0;
+    border: 1px solid var(--color-border-1);
+    border-left: 4px solid var(--color-border-2);
+    border-radius: 7px 0 0 7px;
+    margin-bottom: 4px;
+  }
+  &__btn-show {
+    margin-left: 4px;
+  }
+  &__text {
+    padding: 0px 10px;
+    font-weight: 600;
+    &_sub {
+      font-weight: 400;
+    }
+  }
 }
 </style>

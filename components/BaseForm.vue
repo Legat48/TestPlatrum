@@ -22,7 +22,7 @@
           Не выбрано
         </option>
         <option v-for="employee in employeesBase" :key="employee.id" :value="employee.id">
-          {{ employee.name }}
+          {{ employee.name }} (Таб №{{ employee.id }})
         </option>
       </select>
       <button class="form__btn btn" @click="submit">
@@ -50,6 +50,11 @@ export default {
       const flattenedEmployees = []
       this.flattenEmployees(employees, null, flattenedEmployees)
       return flattenedEmployees
+    }
+  },
+  mounted () {
+    if (this.$store.getters.getParentId) {
+      this.selectedEmployeeId = this.$store.getters.getParentId
     }
   },
   methods: {
