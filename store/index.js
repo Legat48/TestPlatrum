@@ -4,7 +4,11 @@ import generateId from '~/helpers/generateId'
 export const state = () => ({
   employeesBase: [],
   formShow: false,
-  parentId: ''
+  parentId: '',
+  sortDirection: {
+    name: 'asc',
+    createdAt: 'asc'
+  }
 })
 
 export const getters = {
@@ -62,10 +66,14 @@ export const mutations = {
     localStorage.setItem('employeesBase', JSON.stringify(state.employeesBase))
   },
   sortByName (state) {
-    state.employeesBase.sort((a, b) => a.name.localeCompare(b.name))
+    const direction = state.sortDirection.name === 'asc' ? 'desc' : 'asc'
+    sortEmployeesRecursive(state.employeesBase, 'name', direction)
+    state.sortDirection.name = direction
   },
   sortByDate (state) {
-    state.employeesBase.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    const direction = state.sortDirection.createdAt === 'asc' ? 'desc' : 'asc'
+    sortEmployeesRecursive(state.employeesBase, 'createdAt', direction)
+    state.sortDirection.createdAt = direction
   }
 }
 
@@ -78,4 +86,25 @@ function formatDateTime (date) {
   const minutes = String(date.getMinutes()).padStart(2, '0')
   const seconds = String(date.getSeconds()).padStart(2, '0')
   return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`
+}
+
+function sortEmployeesRecursive (employees, key, direction) {
+  employees.sort((a, b) => {
+    const valueA = a[key]
+    const valueB = b[key]
+
+    if (typeof valueA === 'string' && typeof valueB === 'string') {
+      return direction === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA)
+    } else if (typeof valueA === 'number' && typeof valueB === 'number') {
+      return direction === 'asc' ? valueA - valueB : valueB - valueA
+    } else {
+      return 0
+    }
+  })
+
+  employees.forEach((employee) => {
+    if (employee.subordinate?.length) {
+      sortEmployeesRecursive(employee.subordinate, key, direction)
+    }
+  })
 }
