@@ -15,7 +15,7 @@ export default {
   },
   mounted () {
     const base = JSON.parse(localStorage.getItem('employeesBase'))
-    if (base.length > 0) {
+    if (base && base.length > 0) {
       this.$store.commit('setEmployeesBase', base)
     }
   }

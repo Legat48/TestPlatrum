@@ -9,6 +9,9 @@
         Таб. №{{ employee.id }}
       </p>
       <p class="employee__text employee__text_sub">
+        Дата создания {{ employee.createdAt }}
+      </p>
+      <p class="employee__text employee__text_sub">
         {{ employee.phone }}
       </p>
       <button class="employee__btn btn" @click.prevent="delEmployee(employee.id)">
@@ -52,7 +55,7 @@ export default {
   &__wrap {
     display: grid;
     align-items: center;
-    grid-template-columns: 44px 1fr 1fr 1fr 40px;
+    grid-template-columns: 44px 1fr 1fr 1fr 1fr 40px;
   }
   &__subwrap {
     margin-left: 6px;

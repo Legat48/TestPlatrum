@@ -28,7 +28,11 @@ export const mutations = {
   },
   setEmployees (state, { newEmployee, selectedEmployeeId }) {
     state.parentId = ''
-    const employeeToAdd = { ...newEmployee, id: generateId(state.employeesBase) }
+    const employeeToAdd = {
+      ...newEmployee,
+      id: generateId(state.employeesBase),
+      createdAt: formatDateTime(new Date()) // Добавляем свойство createdAt с текущей датой и временем
+    }
 
     if (selectedEmployeeId) {
       const parentEmployee = findEmployeeById(state.employeesBase, selectedEmployeeId)
@@ -56,5 +60,22 @@ export const mutations = {
 
     state.employeesBase = removeEmployeeRecursive(state.employeesBase)
     localStorage.setItem('employeesBase', JSON.stringify(state.employeesBase))
+  },
+  sortByName (state) {
+    state.employeesBase.sort((a, b) => a.name.localeCompare(b.name))
+  },
+  sortByDate (state) {
+    state.employeesBase.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
   }
+}
+
+// Вспомогательная функция для форматирования даты и времени
+function formatDateTime (date) {
+  const day = String(date.getDate()).padStart(2, '0')
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const year = String(date.getFullYear())
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
+  return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`
 }

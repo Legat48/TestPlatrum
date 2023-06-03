@@ -6,6 +6,12 @@
       </h1>
       <BtnShowForm class="table__btn-show" />
     </div>
+    <button class="btn" @click.prevent="$store.commit('sortByDate')">
+      сортировка по дате
+    </button>
+    <button class="btn" @click.prevent="$store.commit('sortByName')">
+      сортировка по имени
+    </button>
     <div v-if="employeesBase">
       <BaseEmployee v-for="employee in employeesBase" :key="employee.id" :employee="employee" />
     </div>
