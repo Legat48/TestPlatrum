@@ -1,5 +1,6 @@
-// Вспомогательная функция для поиска сотрудника по id
-export default function findEmployeeById (employees, id) {
+import { Employee } from './interface/Employee'
+
+export default function findEmployeeById (employees: Employee[], id: number): Employee | null {
   for (const employee of employees) {
     if (employee.id === id) {
       return employee

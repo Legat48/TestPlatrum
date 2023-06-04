@@ -6,7 +6,7 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: '@babel/eslint-parser',
+    parser: '@typescript-eslint/parser',
     requireConfigFile: false
   },
   extends: [
@@ -15,7 +15,8 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   plugins: [
-    'jest'
+    'jest',
+    '@typescript-eslint'
   ],
   // add your custom rules here
   rules: {}

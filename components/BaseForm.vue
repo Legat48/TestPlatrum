@@ -56,8 +56,21 @@ export default {
     if (this.$store.getters.getParentId) {
       this.selectedEmployeeId = this.$store.getters.getParentId
     }
+    // Добавляем обработчик события click на документ для обработки нажатия вне формы для закрытия (не считая кнопку открытия)
+    document.addEventListener('click', this.handleOutsideClick)
+  },
+
+  beforeUnmount () {
+    // Удаляем обработчик события click при размонтировании компонента (для оптимизации, что бы не висели лишние обработчики когда форма скрыта)
+    document.removeEventListener('click', this.handleOutsideClick)
   },
   methods: {
+    handleOutsideClick (event) {
+      const targetClassList = event.target.classList
+      if (!targetClassList.contains('add-btn') && !targetClassList.contains('form')) {
+        this.$store.commit('setFormShow', false)
+      }
+    },
     flattenEmployees (employees, parentId, flattenedEmployees) {
       for (const employee of employees) {
         const flattenedEmployee = {

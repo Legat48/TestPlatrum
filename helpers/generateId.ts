@@ -1,6 +1,7 @@
-export default function generateId (employees) {
-  function flattenNestedEmployees (employees) {
-    let flattened = []
+import { Employee } from './interface/Employee'
+export default function generateId (employees: Employee[]): number {
+  function flattenNestedEmployees (employees: Employee[]): Employee[] {
+    let flattened: Employee[] = []
     for (const employee of employees) {
       flattened.push(employee)
       if (employee.subordinate?.length) {
