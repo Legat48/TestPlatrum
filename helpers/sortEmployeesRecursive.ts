@@ -1,11 +1,11 @@
 import { Employee } from './interface/Employee'
+// Вспомогательная функция для сортировки базы сотрудников внутри и на всю глубину
 
 function sortEmployeesRecursive (employees: (Employee | undefined)[], key: string, direction: 'asc' | 'desc'): void {
   employees.sort((a: Employee | undefined, b: Employee | undefined) => {
     if (!a || !b) {
       return 0
     }
-
     const valueA = a[key]
     const valueB = b[key]
 

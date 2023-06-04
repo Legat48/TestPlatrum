@@ -9,7 +9,7 @@
         Таб. №{{ employee.id }}
       </p>
       <p class="employee__text employee__text_sub">
-        Дата создания {{ employee.createdAt }}
+        {{ employee.createdAt }}
       </p>
       <p class="employee__text employee__text_sub">
         {{ employee.phone }}
@@ -33,8 +33,7 @@ export default {
   props: {
     employee: {
       type: Object,
-      required: true,
-      default: () => ({}) // Пример установки пустого объекта в качестве значения по умолчанию
+      required: true
     }
   },
   methods: {
@@ -49,6 +48,7 @@ export default {
 .employee {
   display: flex;
   flex-direction: column;
+  padding: 4px 0;
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-border-1);
   }

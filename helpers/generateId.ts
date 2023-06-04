@@ -1,4 +1,6 @@
 import { Employee } from './interface/Employee'
+// Вспомогательная функция для генерации айти для сотрудника
+
 export default function generateId (employees: Employee[]): number {
   function flattenNestedEmployees (employees: Employee[]): Employee[] {
     let flattened: Employee[] = []

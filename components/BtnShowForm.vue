@@ -1,7 +1,7 @@
 <template>
   <button class="add-btn btn" @click.prevent="openForm">
-    <svg class="add-btn__icon pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#3264fe" /></svg>
-    <span v-if="!icon" class="pointer-events-none">
+    <svg class="add-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#3264fe" /></svg>
+    <span v-if="!icon" class="add-btn__text">
       Добавить
     </span>
   </button>
@@ -47,14 +47,16 @@ export default {
   path {
     @include transition;
   }
-  &:hover {
-    color: var(--color-text-white-1);
-    background-color: var(--color-btn-2);
-    svg {
-      transform: rotate(180deg);
-    }
-    path {
-      fill: var(--color-text-white-1);
+  @media (min-width: 768px) {
+    &:hover {
+      color: var(--color-text-white-1);
+      background-color: var(--color-btn-2);
+      svg {
+        transform: rotate(180deg);
+      }
+      path {
+        fill: var(--color-text-white-1);
+      }
     }
   }
   &:active {
@@ -72,6 +74,11 @@ export default {
     width: 24px;
     height: 24px;
     @include transition;
+  }
+  &__text {
+    @media (max-width: 500px) {
+      display: none;
+    }
   }
 }
 </style>

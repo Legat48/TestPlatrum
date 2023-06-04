@@ -16,13 +16,15 @@
   justify-content: center;
 }
 
-@mixin imgSwap {
+@mixin no-select {
   -webkit-user-drag: none;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+
 
 @mixin respond-to($media) {
   @if $media == mobile {

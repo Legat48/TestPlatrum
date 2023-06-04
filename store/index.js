@@ -18,7 +18,6 @@ export const getters = {
 
 export const mutations = {
   setFormShow (state, value) {
-    console.log('test')
     if (!value) {
       state.parentId = ''
     }

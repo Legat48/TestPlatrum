@@ -1,3 +1,3 @@
-export default async function ({ store }) {
+export default function () {
   console.log('test')
 }
