@@ -66,8 +66,11 @@ export default {
   },
   methods: {
     handleOutsideClick (event) {
+      console.log('handleOutsideClick', event)
       const targetClassList = event.target.classList
-      if (!targetClassList.contains('add-btn') && !targetClassList.contains('form')) {
+      console.log('handleOutsideClick', targetClassList)
+
+      if (!targetClassList.contains('add-btn') && !targetClassList.contains('form') && !targetClassList.contains('add-btn__icon')) {
         this.$store.commit('setFormShow', false)
       }
     },

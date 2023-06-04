@@ -35,6 +35,10 @@ html body {
   color: var(--color-text-1)
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 
 p,
 h1,

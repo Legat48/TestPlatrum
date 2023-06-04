@@ -1,7 +1,7 @@
 <template>
   <button class="add-btn btn" @click.prevent="openForm">
-    <svg class="add-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#3264fe" /></svg>
-    <span v-if="!icon">
+    <svg class="add-btn__icon pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#3264fe" /></svg>
+    <span v-if="!icon" class="pointer-events-none">
       Добавить
     </span>
   </button>
